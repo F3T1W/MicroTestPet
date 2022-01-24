@@ -25,13 +25,14 @@ namespace MicroTestPet
         {
             IsRecording = false;
             _fileName = "";
-            _memoryBuffer = new InMemoryRandomAccessStream();
+            _memoryBuffer = new InMemoryRandomAccessStream(); // в него записывается аудиопоток. Когда начинаем запись, он должен быть пустой. Останавливаем - очищаем его
         }
         public async void Record()
         {
             if (IsRecording)
             {
                 StopRecording();
+                await _memoryBuffer.FlushAsync();
             }
             else
             {
