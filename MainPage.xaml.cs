@@ -12,56 +12,22 @@ namespace MicroTestPet
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        readonly Microphone micro = new Microphone();
-        //private DeviceInformation current;
-        //private DeviceInformationCollection devices;
+        AudioRecorder _audioRecorder;
 
         public MainPage()
         {
             this.InitializeComponent();
-            //Record.IsEnabled = false;
-            //_ = FindDevicesAsync();
-            Record.Click += Record_Click;
-            Play.Click += Play_Click;
+            this._audioRecorder = new AudioRecorder();
         }
 
-        /*private void ListMic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BtnRecord_Click(object sender, RoutedEventArgs e)
         {
-            if (ListMic.SelectedIndex == -1)
-            {
-                Record.IsEnabled = false;
-                return;
-            }
-            current = devices[ListMic.SelectedIndex];
-            Record.IsEnabled = true;
+            this._audioRecorder.Record();
         }
 
-        public async Task FindDevicesAsync()
+        private void BtnPlay_Click(object sender, RoutedEventArgs e)
         {
-            // Finds all video capture devices
-
-            devices = await DeviceUtils.GetListAudioCaptureDeviceAsync();
-            foreach (DeviceInformation dev in devices)
-            {
-                ListMic.Items.Add(dev.Name);
-            }
-        }*/
-
-        private void Record_Click(object sender, RoutedEventArgs e)
-        {
-            if (micro.recording)
-            {
-                micro.Stop();
-            }
-            else
-            {
-                micro.Record();
-            }
-        }
-
-        private async void Play_Click(object sende, RoutedEventArgs e)
-        {
-            await micro.Play(Dispatcher);
+            this._audioRecorder.Play();
         }
     }
 }

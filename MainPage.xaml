@@ -8,8 +8,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button x:Name="Record" Content="Start this shit!" Height="300" Width="300" HorizontalAlignment="Center" FontSize="36" Click="Record_Click"/>
-        <Button x:Name="Play" Content="Аййй" Margin="1038,0,0,0" BorderThickness="1" Click="Play_Click" Height="300" Width="286" FontSize="72"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="24">Audio in UWP</TextBlock>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" >
+            <Button Name="btnRecord" Click="BtnRecord_Click">Record</Button>
+            <Button Name="btnPlay" Click="BtnPlay_Click">Play</Button>
+        </StackPanel>
     </Grid>
 </Page>
